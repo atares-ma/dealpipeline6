@@ -437,3 +437,40 @@ input, select { font-family: inherit; }
 .boot.error { color: var(--on-dark); }
 .boot.error strong { font-size: 16px; font-weight: 700; }
 .boot.error span { color: var(--on-dark-3); font-size: 12.5px; max-width: 40ch; }
+
+/* Export-to-PDF button — sits on the dark topbar alongside search */
+.btn.export {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--on-dark);
+  font-weight: 500;
+}
+.btn.export:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.30); }
+
+/* ---------------- Print / Export to PDF ---------------- */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+
+  /* render the branded colors in the PDF */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html, body { height: auto; }
+  body { background-attachment: scroll; }
+
+  /* let all content flow across pages instead of being clipped */
+  .app { height: auto; overflow: visible; }
+  .board { overflow: visible; height: auto; flex-wrap: wrap; align-items: flex-start; }
+  .col-list, .col-list.compact, .col-list.comfy { overflow: visible; }
+  .view { overflow: visible; height: auto; }
+
+  /* hide interactive-only chrome */
+  .top-actions, .col-add, .search, .seg, .view-actions, .chips, .td-action { display: none !important; }
+
+  /* columns shrink to share the page width */
+  .column { min-width: 0; max-width: none; break-inside: avoid; }
+
+  /* don't split a card / panel / table row across pages */
+  .deal-card, .mandate, .kpi, .panel, .data-table tr { break-inside: avoid; }
+}

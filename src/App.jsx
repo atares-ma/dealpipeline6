@@ -227,6 +227,13 @@ export default function App() {
               <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search deals" />
             </label>
           )}
+          <button className="btn export" onClick={() => window.print()} title="Export the current view to PDF">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v11m0 0l-4-4m4 4l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M5 17v2a2 2 0 002 2h10a2 2 0 002-2v-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            Export PDF
+          </button>
           <button className="btn primary" onClick={() => openNew("sourcing")}>
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
               <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
